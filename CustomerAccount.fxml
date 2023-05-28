@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #77419C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="297.0" layoutY="150.0" prefHeight="18.0" prefWidth="84.0" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="247.0" layoutY="-13.0" prefHeight="115.0" prefWidth="255.0" style="-fx-background-color: #77419C;" text="حساب کاربری" textFill="WHITE">
+         <font>
+            <Font name="B Titr Bold" size="39.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="594.0" layoutY="109.0" prefHeight="25.0" prefWidth="119.0" text="نام کاربری" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="594.0" layoutY="165.0" prefHeight="26.0" prefWidth="119.0" text="رمز عبور" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="594.0" layoutY="227.0" prefHeight="26.0" prefWidth="119.0" text="نقش کاربر" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="594.0" layoutY="289.0" prefHeight="26.0" prefWidth="119.0" text="نام" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="594.0" layoutY="348.0" prefHeight="26.0" prefWidth="119.0" text="نام خانوادگی" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="594.0" layoutY="405.0" prefHeight="26.0" prefWidth="119.0" text="ایمیل" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="594.0" layoutY="463.0" prefHeight="32.0" prefWidth="132.0" text="شماره موبایل" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="119.0" layoutY="312.0" mnemonicParsing="false" onAction="#setRecords" prefHeight="48.0" prefWidth="119.0" text="سوابق خرید" />
+      <Button layoutX="119.0" layoutY="408.0" mnemonicParsing="false" onAction="#setDiscountCode" prefHeight="48.0" prefWidth="119.0" text="کد های تخفیف" />
+      <Button layoutY="360.0" mnemonicParsing="false" onAction="#setCart" prefHeight="48.0" prefWidth="119.0" text="سبد خرید" />
+      <Button layoutX="76.0" layoutY="54.0" mnemonicParsing="false" onAction="#setMoney" prefHeight="18.0" prefWidth="150.0" style="-fx-background-color: #0ECC3E; -fx-background-radius: 10px;" text="افزایش موجودی +" textFill="#050000">
+         <font>
+            <Font name="B Titr Bold" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="76.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wallet.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="moneyField" alignment="CENTER" layoutX="76.0" layoutY="14.0" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10px;" text="0 تومان" />
+      <Button layoutY="264.0" mnemonicParsing="false" onAction="#setChangeInformation" prefHeight="48.0" prefWidth="119.0" text="تغییر اطلاعات کاربری" />
+      <TextField fx:id="userField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="111.0" onAction="#setUser" prefHeight="27.0" prefWidth="150.0" promptText="نام کاربری" />
+      <TextField fx:id="passField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="167.0" onAction="#setPass" prefHeight="27.0" prefWidth="150.0" promptText="رمز عبور" />
+      <TextField fx:id="ruleField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="229.0" onAction="#setRule" prefHeight="27.0" prefWidth="150.0" promptText="نقش کاربر" />
+      <TextField fx:id="firstNameField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="291.0" onAction="#setFirstName" prefHeight="27.0" prefWidth="150.0" promptText="نام" />
+      <TextField fx:id="lastNameField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="350.0" onAction="#setLastName" prefHeight="27.0" prefWidth="150.0" promptText="نام خانوادگی" />
+      <TextField fx:id="emailField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="407.0" onAction="#setEmail" prefHeight="27.0" prefWidth="150.0" promptText="آدرس ایمیل" />
+      <TextField fx:id="phoneField" alignment="CENTER" editable="false" layoutX="414.0" layoutY="465.0" onAction="#setNumber" prefHeight="27.0" prefWidth="150.0" promptText="شماره مبایل" />
+   </children>
+</AnchorPane>
