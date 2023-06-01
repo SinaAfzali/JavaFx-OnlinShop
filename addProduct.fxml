@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.LoginController">
+   <children>
+      <Pane layoutX="390.0" layoutY="123.0" onMouseClicked="#returnVector" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #662d91; -fx-background-radius: 100px;" styleClass="#0f0c38">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="58.0" layoutX="647.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@vector.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="540.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="نام کالا" textAlignment="CENTER" wrappingWidth="106.9456787109375">
+               <font>
+                  <Font name="B Yekan" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="470.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="دسته بندی محصول">
+               <font>
+                  <Font name="B Yekan" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="559.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت">
+               <font>
+                  <Font name="B Yekan" size="25.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="35.0" fitWidth="52.0" layoutX="257.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="WHITE" layoutX="257.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="معرفی محصول">
+               <font>
+                  <Font name="B Yekan" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="70.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="فروشنده عزیز برای ثبت کالا لازم است اطلاعات زیر را تکمیل کنید" textAlignment="CENTER" wrappingWidth="528.1031188964844">
+               <font>
+                  <Font name="B Yekan" size="25.0" />
+               </font>
+            </Text>
+            <TextField fx:id="nameOfProduct" layoutX="391.0" layoutY="156.0" prefHeight="27.0" prefWidth="149.0" />
+            <TextField fx:id="priceOfProduct" alignment="CENTER" layoutX="391.0" layoutY="231.0" prefHeight="27.0" prefWidth="149.0" promptText="بر حسب تومان" />
+            <MenuButton layoutX="62.0" layoutY="144.0" mnemonicParsing="false" onAction="#menueButton" text="MenuButton">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+         </children>
+      </Pane>
+   </children>
+</Pane>
