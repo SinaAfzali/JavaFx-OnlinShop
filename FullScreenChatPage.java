@@ -35,7 +35,9 @@ public class FullScreenChatPage extends Application {
         chatListView = new ListView<>();
         chatListView.setPrefHeight(Screen.getPrimary().getVisualBounds().getHeight());
         chatListView.setCellFactory(param -> new ChatListCell());
-        chatListView.setStyle("-fx-background-color: #F5F5F5;");
+        chatListView.setStyle("-fx-background-color: #F5F5F5;-fx-prompt-text-fill: #999999; -fx-font-size: 24px;");
+        chatListView.setPadding(new Insets(0,250,50,250));
+
 
         ScrollPane scrollPane = new ScrollPane(chatListView);
         scrollPane.setFitToHeight(true);
@@ -44,10 +46,10 @@ public class FullScreenChatPage extends Application {
 
         messageField = new TextField();
         messageField.setPromptText("Enter your message...");
-        messageField.setStyle("-fx-prompt-text-fill: #999999; -fx-font-size: 14px;");
+        messageField.setStyle("-fx-prompt-text-fill: #999999; -fx-font-size: 24px;");
 
-        sendButton = new Button("Send");
-        sendButton.setStyle("-fx-font-size: 14px; -fx-background-color: #4CAF50; -fx-text-fill: white;");
+        sendButton = new Button("ارسال");
+        sendButton.setStyle("-fx-font-size: 24px; -fx-background-color: #4CAF50; -fx-text-fill: white;");
         sendButton.setOnAction(event -> sendMessage());
 
         HBox inputContainer = new HBox(10, messageField, sendButton);
@@ -60,8 +62,8 @@ public class FullScreenChatPage extends Application {
 
         root.setCenter(chatContainer);
 
-        backButton = new Button("Back");
-        backButton.setStyle("-fx-font-size: 14px; -fx-background-color: #CCCCCC;");
+        backButton = new Button("بستن چت");
+        backButton.setStyle("-fx-font-size: 24px; -fx-background-color: #CCCCCC;");
         backButton.setOnAction(event -> goBack(primaryStage));
 
         HBox topContainer = new HBox(backButton);
@@ -82,7 +84,7 @@ public class FullScreenChatPage extends Application {
     }
 
     private void sendMessage() {
-        String message = messageField.getText().trim();
+        String message = messageField.getText();
         if (!message.isEmpty()) {
             String senderMessage = "You: " + message;
             String recipientMessage = "Recipient: " + message;
@@ -121,11 +123,11 @@ public class FullScreenChatPage extends Application {
             senderMessageBox.setSpacing(10);
             recipientMessageBox.setSpacing(10);
 
-            senderMessageBox.setPadding(new Insets(5));
-            recipientMessageBox.setPadding(new Insets(5));
+            senderMessageBox.setPadding(new Insets(0));
+            recipientMessageBox.setPadding(new Insets(0));
 
-            senderMessageBox.setStyle("-fx-background-color: #4CAF50; -fx-background-radius: 10;");
-            recipientMessageBox.setStyle("-fx-background-color: #4caf50; -fx-background-radius: 10;");
+            senderMessageBox.setStyle("-fx-background-color: #794caf; -fx-background-radius: 10;");
+            recipientMessageBox.setStyle("-fx-background-color: #54c4c0; -fx-background-radius: 10;");
 
             messageContainer.getChildren().addAll(senderMessageBox, recipientMessageBox);
             setGraphic(messageContainer);
