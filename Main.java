@@ -1,45 +1,138 @@
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.Properties;
+package com.example.OnlineShop;
 
-public class Main {
-    public static void main(String[] args) {
-        // مشخصات اکانت ایمیل خود را وارد کنید
-        String from = "darseik10.10@gmail.com";
-        String password = "";
+import javafx.animation.PauseTransition;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
-        // مشخصات گیرنده
-        String to = "zedrix787@gmail.com";
 
-        // اطلاعات سرور ایمیل خود را وارد کنید
-        String host = "smtp.gmail.com";
-        Properties properties = System.getProperties();
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.auth", "true");
 
-        // ایجاد session با استفاده از اطلاعات اکانت ایمیل
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, password);
+import javafx.application.Application;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+
+import java.io.File;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+
+public final class Main extends Application {
+    @Override
+    public void start(Stage primaryStage) throws IOException, SQLException {
+
+
+        Database.readPerson(Information.getPersons());
+
+        Database.readProduct(Information.getProducts());
+
+        Database.readTransaction(Information.getTransactions());
+
+        wareHouse wareHouse = new wareHouse("FUM WareHouse", "Mashhad", "sina1382");
+        Information.getWareHouses().add(wareHouse);
+
+        Information.getPersons().get(1).setMoney(1000000);
+
+
+//        for(int i = 0;i<Information.getProducts().size();i++){
+//            String address = "E:\\java\\OnlineShop\\src\\main\\resources\\com\\example\\image\\";
+//            address+=(i+1)+".jpg";
+//            Information.getProducts().get(i).setAddressImage(address);
+//            Database.updateProduct(Information.getProducts().get(i));
+//        }
+
+
+
+
+
+
+
+
+        VBox loadingBox = new VBox();
+        loadingBox.setAlignment(Pos.CENTER);
+
+        // Create the loading label
+        Label loadingLabel = new Label("درحال انتقال به فروشگاه...");
+        loadingLabel.setStyle("-fx-font-size: 24px;");
+
+        // Create the progress indicator for the loading animation
+        ProgressIndicator loadingIndicator = new ProgressIndicator();
+
+        // Add the label and the progress indicator to the loading box
+        loadingBox.getChildren().addAll(loadingLabel, loadingIndicator);
+
+        // Create a PauseTransition for the loading duration (5 seconds)
+        PauseTransition loadingAnimation = new PauseTransition(Duration.seconds(5));
+        loadingAnimation.setOnFinished(event -> {
+            try {
+                // Load and show the main page after the loading animation
+                Scene scene = new Scene(Methods.loader("sellerAccount.fxml").load(), 500, 600);
+                Methods.stage.setScene(scene);
+                Methods.stage.setFullScreen(true);
+                Methods.stage.show();
+
+                // Close the loading animation page
+                primaryStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
-        try {
-            // ایجاد شیء MimeMessage و تنظیم مشخصات ایمیل
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Hello from JavaMail");
-            message.setText("This is a test email.");
+        // Play the loading animation
+        loadingAnimation.play();
 
-            // ارسال ایمیل
-            Transport.send(message);
-            System.out.println("Email sent successfully!");
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
-        }
+        // Create the loading scene and set it as the primaryStage scene
+        Scene loadingScene = new Scene(loadingBox);
+        primaryStage.setScene(loadingScene);
+
+        // Set the primaryStage to full screen
+        primaryStage.setFullScreen(true);
+
+        // Show the primaryStage
+        primaryStage.show();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+
+
+
+
+
+
+
+
+
 }
