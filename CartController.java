@@ -37,8 +37,11 @@ public class CartController implements Initializable {
 
     private ArrayList<Label>quantity;
 
+    int money=0;
+
     @FXML
     void disscountPage(ActionEvent event) throws IOException {
+        Information.back=2;
         Scene scene = new Scene(Methods.loader("discountCode.fxml").load(), 500, 600);
         Methods.stage.setScene(scene);
         Methods.stage.setFullScreen(true);
@@ -46,8 +49,20 @@ public class CartController implements Initializable {
     }
 
     @FXML
-    void payPage(ActionEvent event) {
-
+    void payPage(ActionEvent event) throws IOException {
+        if (Information.isLogin() && Information.getRole()==1){
+            Scene scene = new Scene(Methods.loader("pay2.fxml").load(), 500, 600);
+            Methods.stage.setScene(scene);
+            Methods.stage.setFullScreen(true);
+            Methods.stage.show();
+        }
+        else {
+            Information.back=3;
+            Scene scene = new Scene(Methods.loader("Login.fxml").load(), 500, 600);
+            Methods.stage.setScene(scene);
+            Methods.stage.setFullScreen(true);
+            Methods.stage.show();
+        }
     }
 
     public void setProduct() throws FileNotFoundException {
@@ -56,7 +71,7 @@ public class CartController implements Initializable {
         grid.setPadding(new Insets(10));
         for (int i=0;i<Information.getProducts().size();i++){
             int j=i;
-            grid.getChildren().removeIf(node -> GridPane.getRowIndex(node)==j/2 && GridPane.getColumnIndex(node)==j%2);
+            grid.getChildren().removeIf(node -> GridPane.getRowIndex(node)==j/3 && GridPane.getColumnIndex(node)==j%3);
         }
 
         quantity=new ArrayList<>();
@@ -74,8 +89,8 @@ public class CartController implements Initializable {
             }
         }
         for (int i=0;i<indexs.length;i++) {
-            anchorPane.setPrefHeight((i/2+1)*500);
-            grid.setPrefHeight((i/2+1)*499.99);
+            anchorPane.setPrefHeight((i/3+1)*500);
+            grid.setPrefHeight((i/3+1)*499.99);
 
             ImageView imageView = new ImageView(new Image(new FileInputStream(Information.getProducts().get(indexs[i]).getAddressImage())));
             Text text = new Text(Information.getProducts().get(indexs[i]).getName()+"\n"+Information.getProducts().get(indexs[i]).getDescription());
@@ -115,7 +130,7 @@ public class CartController implements Initializable {
             VBox vbox = new VBox(imageView, text,label, hBox);
             vbox.setAlignment(Pos.CENTER);
             vbox.setPrefSize(350,350);
-            grid.add(vbox, i%2, i/2);
+            grid.add(vbox, i%3, i/3);
         }
         setTotalPrice();
     }
@@ -150,13 +165,14 @@ public class CartController implements Initializable {
     }
 
     public void setTotalPrice(){
-        int money=0;
+        money=0;
         for (int i=0;i<Information.getProducts().size();i++){
             if (Information.getProducts().get(i).getNumberInCart()>0) {
                 money += Information.getProducts().get(i).getNumberInCart()*Information.getProducts().get(i).getPrice();
             }
         }
         totalPrice.setText("     مبلغ قابل پرداخت : "+Methods.moneyStandard(money)+" تومان");
+        Information.setTotalPrice(money);
     }
 
     public void backIcon(MouseEvent mouseEvent) throws IOException {

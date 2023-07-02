@@ -26,11 +26,11 @@
                   <Image url="@../image/vector.png" />
                </image>
             </ImageView>
-            <ScrollPane layoutX="135.0" layoutY="98.0" prefHeight="373.0" prefWidth="580.0">
+            <ScrollPane layoutX="3.0" layoutY="98.0" prefHeight="373.0" prefWidth="828.0">
               <content>
-                <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="578.0">
+                <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="826.0">
                      <children>
-                        <GridPane fx:id="grid" prefHeight="373.0" prefWidth="580.0">
+                        <GridPane fx:id="grid" prefHeight="374.0" prefWidth="828.0">
                           <columnConstraints>
 <!--                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
 <!--                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
