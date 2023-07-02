@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.wareHouseController">
+   <children>
+      <Pane layoutX="367.0" layoutY="123.0" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #662d91; -fx-background-radius: 100px;">
+         <children>
+            <ImageView fitHeight="79.0" fitWidth="64.0" layoutX="660.0" layoutY="19.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/vector.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="46.0" layoutY="46.0" mnemonicParsing="false" onAction="#addWareHouse" prefHeight="43.0" prefWidth="119.0" style="-fx-background-radius: 20px; -fx-background-color: #00ff00;" text="افزودن انبار">
+               <font>
+                  <Font name="B Yekan" size="18.0" />
+               </font></Button>
+            <ScrollPane layoutX="41.0" layoutY="189.0" prefHeight="285.0" prefWidth="683.0">
+              <content>
+                <AnchorPane fx:id="warehousePane" minHeight="0.0" minWidth="0.0" prefHeight="318.0" prefWidth="683.0">
+                     <children>
+                        <GridPane fx:id="grid" layoutY="6.0" prefHeight="304.0" prefWidth="683.0">
+                          <columnConstraints>
+<!--                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+                          </columnConstraints>
+                          <rowConstraints>
+<!--                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+                          </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Pane fx:id="infoPane" layoutX="177.0" layoutY="15.0" prefHeight="117.0" prefWidth="310.0" visible="false">
+               <children>
+                  <Label fx:id="nameLabel" layoutX="222.0" layoutY="12.0" prefHeight="17.0" prefWidth="80.0" text="نام انبار">
+                     <font>
+                        <Font name="B Yekan" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="addressLabel" layoutX="222.0" layoutY="47.0" prefHeight="23.0" prefWidth="87.0" text="آدرس انبار">
+                     <font>
+                        <Font name="B Yekan" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="namefield" layoutX="27.0" layoutY="15.0" prefHeight="25.0" prefWidth="191.0" />
+                  <TextField fx:id="addressField" layoutX="28.0" layoutY="51.0" prefHeight="25.0" prefWidth="191.0" />
+                  <Button fx:id="createButton" layoutX="106.0" layoutY="83.0" mnemonicParsing="false" onAction="#createButton" prefHeight="23.0" prefWidth="89.0" style="-fx-background-color: #0055ff;" text="ایجاد انبار">
+                     <font>
+                        <Font name="B Yekan" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Button layoutX="43.0" layoutY="159.0" minHeight="30.0" mnemonicParsing="false" prefWidth="150.0" text="نام انبار" />
+            <Button layoutX="193.0" layoutY="159.0" minHeight="30.0" mnemonicParsing="false" prefWidth="250.0" text="آدرس انبار" />
+            <Button layoutX="592.0" layoutY="159.0" minHeight="30.0" mnemonicParsing="false" prefWidth="120.0" text="تعداد محصولات انبار" />
+            <Button layoutX="442.0" layoutY="159.0" minHeight="30.0" mnemonicParsing="false" prefWidth="150.0" text="مدیر انبار" />
+            <MenuBar layoutX="494.0" layoutY="51.0" prefHeight="26.0" prefWidth="140.0">
+              <menus>
+                  <Menu fx:id="menu" mnemonicParsing="false" text="FUM WareHouse">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#fumWareHouse" text="FUM WareHouse" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <Label layoutX="533.0" layoutY="20.0" prefHeight="30.0" prefWidth="111.0" text=" انبار پیش فرض :">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>
