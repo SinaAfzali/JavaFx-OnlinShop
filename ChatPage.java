@@ -1,6 +1,7 @@
 package com.example.OnlineShop;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -20,14 +23,17 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class ChatPage  {
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class ChatPage {
 
     private ListView<String> chatListView;
     private TextField messageField;
     private Button sendButton;
     private Button backButton;
 
-    public void start(Stage primaryStage) {
+    public  void start(Stage primaryStage,int back,int user) throws SQLException, IOException {
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
 
@@ -49,7 +55,31 @@ public class ChatPage  {
 
         sendButton = new Button("ارسال");
         sendButton.setStyle("-fx-font-size: 24px; -fx-background-color: #4CAF50; -fx-text-fill: white;");
-        sendButton.setOnAction(event -> sendMessage());
+        sendButton.setOnAction(event -> {
+            try {
+                sendMessage(1,false,null);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
+        messageField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    try {
+                        sendMessage(1,false,null);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
 
         HBox inputContainer = new HBox(10, messageField, sendButton);
         inputContainer.setAlignment(Pos.CENTER);
@@ -63,7 +93,13 @@ public class ChatPage  {
 
         backButton = new Button("بستن چت");
         backButton.setStyle("-fx-font-size: 24px; -fx-background-color: #CCCCCC;");
-        backButton.setOnAction(event -> goBack(primaryStage));
+        backButton.setOnAction(event -> {
+            try {
+                goBack(back);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         HBox topContainer = new HBox(backButton);
         topContainer.setAlignment(Pos.CENTER_LEFT);
@@ -78,25 +114,103 @@ public class ChatPage  {
 
         // Maximize the window
         primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
 
         primaryStage.show();
+
+
+
+        for (int i=0;i<Information.getMessages().size();i++){
+
+            if (user==1){
+                if (Information.getMessages().get(i).getUserSender().equals(Information.getUserName()) &&
+                        Information.getMessages().get(i).getRoleSender()==Information.getRole()){
+                    sendMessage(1,true,Information.getMessages().get(i).getText());
+                }
+                int r=0;
+                if (Information.getRole()==1)r=3;
+                else if (Information.getRole()==2)r=4;
+                if (Information.getMessages().get(i).getUserSender().equals(Information.getUserName()) &&
+                        Information.getMessages().get(i).getRoleSender()==Information.getRole() &&
+                        Information.getMessages().get(i).getRoleSender()==r){
+                    sendMessage(2,true,Information.getMessages().get(i).getText());
+                }
+            }
+
+
+            if (user==2){
+
+                if (Information.getMessages().get(i).getUserSender().equals(Information.userChat) &&
+                        Information.getMessages().get(i).getRoleSender()==Information.roleChat){
+
+                    Information.getMessages().get(i).setRead(0);
+                    Database.updateMessage(Information.getMessages().get(i));
+                    sendMessage(2,true,Information.getMessages().get(i).getText());
+                }
+                if (Information.getMessages().get(i).getUserSender().equals(Information.userChat) &&
+                        Information.getMessages().get(i).getRoleSender()==3 &&
+                          Information.roleChat==1){
+
+                    Information.getMessages().get(i).setRead(0);
+                    Database.updateMessage(Information.getMessages().get(i));
+                    sendMessage(1,true,Information.getMessages().get(i).getText());
+                }
+
+
+                if (Information.getMessages().get(i).getUserSender().equals(Information.userChat) &&
+                        Information.getMessages().get(i).getRoleSender()==4 &&
+                        Information.roleChat==2){
+
+                    Information.getMessages().get(i).setRead(0);
+                    Database.updateMessage(Information.getMessages().get(i));
+                    sendMessage(1,true,Information.getMessages().get(i).getText());
+                }
+            }
+
+        }
+
+
+
+
+
+
     }
 
-    private void sendMessage() {
-        String message = messageField.getText();
+    private void sendMessage(int mode,boolean auto,String message1) throws SQLException, IOException {
+        String message = "";
+        if (!auto)message = messageField.getText();
+        if (auto)message=message1;
         if (!message.isEmpty()) {
-            String senderMessage = "You: " + message;
             String recipientMessage = "Recipient: " + message;
+            String senderMessage = "You: " + message;
 
-            chatListView.getItems().addAll(senderMessage, recipientMessage);
+            if (mode==1)chatListView.getItems().addAll(recipientMessage);
+            if (mode==2)chatListView.getItems().addAll(senderMessage);
+
             chatListView.scrollTo(chatListView.getItems().size() - 1); // Scroll to the latest message
             messageField.clear();
+
+            if (!auto){
+                new server(message).start();
+                new client().start();
+            }
+
         }
     }
 
-    private void goBack(Stage stage) {
-        // Add logic to go back to the previous page here
-        stage.close(); // Close the chat window
+    private void goBack(int x) throws IOException {
+        if (x==1) {
+            Scene scene = new Scene(Methods.loader("MainPage.fxml").load(), 500, 600);
+            Methods.stage.setScene(scene);
+            Methods.stage.setFullScreen(true);
+            Methods.stage.show();
+        }
+        if (x==2){
+            Scene scene = new Scene(Methods.loader("AdminAccount.fxml").load(), 500, 600);
+            Methods.stage.setScene(scene);
+            Methods.stage.setFullScreen(true);
+            Methods.stage.show();
+        }
     }
 
     private class ChatListCell extends ListCell<String> {
@@ -110,8 +224,8 @@ public class ChatPage  {
             messageContainer = new VBox();
             senderMessageBox = new HBox();
             recipientMessageBox = new HBox();
-            senderProfileImage = new ImageView(new Image("C:\\Users\\ASUS\\Documents\\ts\\image\\dice11.jpg")); // Replace with your sender profile image path
-            recipientProfileImage = new ImageView(new Image("C:\\Users\\ASUS\\Documents\\ts\\image\\dice22.jpg")); // Replace with your recipient profile image path
+            senderProfileImage = new ImageView(new Image("D:\\Programming\\intellij\\OnlineShop\\src\\main\\resources\\com\\example\\image\\l.png")); // Replace with your sender profile image path
+            recipientProfileImage = new ImageView(new Image("D:\\Programming\\intellij\\OnlineShop\\src\\main\\resources\\com\\example\\image\\l.png")); // Replace with your recipient profile image path
 
             senderMessageBox.setAlignment(Pos.CENTER_LEFT);
             recipientMessageBox.setAlignment(Pos.CENTER_RIGHT);
@@ -163,7 +277,7 @@ public class ChatPage  {
                         senderMessageBox.getChildren().addAll(senderProfileImage, messageButton);
                         senderMessageBox.setEffect(chatBubbleShadow);
                     } else if (sender.equalsIgnoreCase("Recipient")) {
-                        recipientMessageBox.getChildren().addAll(recipientProfileImage, messageButton);
+                        recipientMessageBox.getChildren().addAll(messageButton,recipientProfileImage );
                         recipientMessageBox.setEffect(chatBubbleShadow);
                     }
                 }
