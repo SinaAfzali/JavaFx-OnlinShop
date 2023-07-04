@@ -2,25 +2,39 @@ package com.example.OnlineShop;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.application.Platform;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 import javafx.util.Duration;
 
 
 
+import javax.sound.sampled.*;
+import javax.swing.*;
+import java.io.File;
+import javafx.application.Application;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
+
+
+
+
+import javafx.application.Application;
+import javafx.scene.media.Media;
 import java.io.File;
 
 import java.io.IOException;
@@ -30,6 +44,24 @@ import java.sql.SQLException;
 public final class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         Database.readPerson(Information.getPersons());
@@ -75,11 +107,38 @@ public final class Main extends Application {
         PauseTransition loadingAnimation = new PauseTransition(Duration.seconds(5));
         loadingAnimation.setOnFinished(event -> {
             try {
+
+
+
+
+
+
+
+
+
+
+
                 // Load and show the main page after the loading animation
-                Scene scene = new Scene(Methods.loader("sellerAccount.fxml").load(), 500, 600);
+                Scene scene = new Scene(Methods.loader("MainPage.fxml").load(), 600, 400);
+
+
                 Methods.stage.setScene(scene);
                 Methods.stage.setFullScreen(true);
                 Methods.stage.show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 // Close the loading animation page
                 primaryStage.close();
@@ -87,6 +146,16 @@ public final class Main extends Application {
                 e.printStackTrace();
             }
         });
+
+
+
+
+
+
+
+
+
+
 
         // Play the loading animation
         loadingAnimation.play();
@@ -100,26 +169,20 @@ public final class Main extends Application {
 
         // Show the primaryStage
         primaryStage.show();
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static void main(String[] args) {
