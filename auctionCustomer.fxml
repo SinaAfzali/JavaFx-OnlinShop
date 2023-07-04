@@ -37,26 +37,51 @@
                   <Font name="W_yekan Bold" size="29.0" />
                </font>
             </Label>
-            <ImageView fitHeight="197.0" fitWidth="200.0" layoutX="34.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="setPhoto" fitHeight="197.0" fitWidth="200.0" layoutX="34.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/3.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="setPrice" layoutX="577.0" layoutY="146.0" prefHeight="98.0" prefWidth="197.0" text="قیمت پایه : 200000" textFill="WHITE">
+            <Label fx:id="setPrice" layoutX="577.0" layoutY="120.0" prefHeight="98.0" prefWidth="197.0" text="قیمت پایه : 200000" textFill="WHITE">
                <font>
                   <Font name="W_yekan Bold" size="29.0" />
                </font>
             </Label>
-            <Label fx:id="setSeller" layoutX="324.0" layoutY="147.0" prefHeight="98.0" prefWidth="217.0" text="فروشنده : آقای ایکس" textFill="WHITE">
+            <Label fx:id="setSeller" layoutX="324.0" layoutY="121.0" prefHeight="98.0" prefWidth="217.0" text="فروشنده : آقای ایکس" textFill="WHITE">
                <font>
                   <Font name="W_yekan Bold" size="29.0" />
                </font>
             </Label>
-            <Label fx:id="setName" layoutX="39.0" layoutY="310.0" prefHeight="98.0" prefWidth="217.0" text="نام کالا : شیر پاکتی" textFill="WHITE">
+            <Label fx:id="setName" layoutX="567.0" layoutY="202.0" prefHeight="98.0" prefWidth="217.0" text="نام کالا : شیر پاکتی" textFill="WHITE">
                <font>
                   <Font name="W_yekan Bold" size="29.0" />
                </font>
             </Label>
+            <Label fx:id="numberOfProduct" layoutX="76.0" layoutY="339.0" prefHeight="70.0" prefWidth="126.0" text="تعداد کالا :0" textFill="WHITE">
+               <font>
+                  <Font name="W_yekan Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="setTheGreatestPrice" layoutX="216.0" layoutY="421.0" prefHeight="98.0" prefWidth="405.0" text="بالا ترین قیمت پیشنهاد شده : 200000000" textFill="WHITE">
+               <font>
+                  <Font name="W_yekan Bold" size="29.0" />
+               </font>
+            </Label>
+            <Button fx:id="goToProductPage" layoutX="348.0" layoutY="234.0" mnemonicParsing="false" text="رفتن به صفحه کالا">
+               <font>
+                  <Font name="B Yekan" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="27.0" layoutY="359.0" mnemonicParsing="false" onAction="#Increase" prefHeight="45.0" prefWidth="45.0" style="-fx-background-radius: 20px; -fx-background-color: #00ff00;" text="+">
+               <font>
+                  <Font name="B Yekan" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="194.0" layoutY="359.0" mnemonicParsing="false" onAction="#Decrease" prefHeight="45.0" prefWidth="45.0" style="-fx-background-radius: 20px; -fx-background-color: #ff0000;" text="-">
+               <font>
+                  <Font name="B Yekan" size="17.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
