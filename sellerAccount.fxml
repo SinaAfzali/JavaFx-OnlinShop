@@ -67,6 +67,27 @@
                   <Button layoutX="22.0" layoutY="79.0" mnemonicParsing="false" onAction="#setIncrease" style="-fx-background-color: #0ECC3E;" text="افزودن به شماره کارت ثبت شده" />
                </children>
             </Pane>
+            <Pane layoutX="6.0" layoutY="94.0" prefHeight="115.0" prefWidth="302.0" style="-fx-background-color: #84d0f9; -fx-background-radius: 20px;" visible="false">
+               <children>
+                  <Text layoutX="238.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="مبلغ : ">
+                     <font>
+                        <Font name="B Yekan" size="21.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="185.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="شماره کارت : ">
+                     <font>
+                        <Font name="B Yekan" size="21.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="setMoneyConfirm" alignment="CENTER" layoutX="89.0" layoutY="6.0" promptText="تومان" />
+                  <TextField fx:id="setCardNumber" alignment="CENTER" layoutX="14.0" layoutY="49.0" prefHeight="25.0" prefWidth="171.0" promptText="____   ____   ____   ____" />
+                  <Button fx:id="giveMoney" layoutX="119.0" layoutY="85.0" mnemonicParsing="false" style="-fx-background-color: #0ECC3E; -fx-background-radius: 20px;" text="برداشت">
+                     <font>
+                        <Font name="B Yekan" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Label alignment="TOP_LEFT" layoutX="1024.0" layoutY="260.0" prefHeight="25.0" prefWidth="119.0" text="نام کاربری" textFill="WHITE">
