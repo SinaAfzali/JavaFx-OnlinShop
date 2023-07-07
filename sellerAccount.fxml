@@ -3,12 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.image.Image?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.SellerAccountController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.SellerAccountController">
    <children>
       <Pane layoutX="390.0" layoutY="122.5" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #662d91; -fx-background-radius: 50px;">
          <children>
@@ -44,18 +45,28 @@
                </image>
             </ImageView>
             <Button fx:id="confirmButton" layoutX="219.0" layoutY="295.0" mnemonicParsing="false" onAction="#confirmButton" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #1E698F;  " text="ثبت" textFill="WHITE" visible="false" />
-            <Button  fx:id="cancelButton" layoutX="272.0" layoutY="294.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #1E698F;" text="لغو" textFill="WHITE" visible="false" />
-            <ImageView fx:id="changeProfile" fitHeight="122.0" fitWidth="132.0" layoutX="207.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="cancelButton" layoutX="272.0" layoutY="294.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #1E698F;" text="لغو" textFill="WHITE" visible="false" />
             <ImageView fitHeight="88.0" fitWidth="101.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
 
                </image>
             </ImageView>
-            <Button layoutX="8.0" layoutY="107.0" mnemonicParsing="false" onAction="#bankAccounts" style="-fx-background-radius: 75px; -fx-background-color: #eb5406;" text="حساب های بانکی">
+            <Button layoutX="164.0" layoutY="216.0" mnemonicParsing="false" onAction="#sellInformationButton" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #eb5406; -fx-background-radius: 15px100px;" text="کالا های من" textFill="WHITE">
                <font>
-                  <Font name="B Yekan" size="14.0" />
+                  <Font name="B Titr Bold" size="18.0" />
                </font>
             </Button>
+            <Pane layoutX="22.0" layoutY="94.0" prefHeight="115.0" prefWidth="221.0" style="-fx-background-color: #81d4f4; -fx-background-radius: 10px;" visible="false">
+               <children>
+                  <Text layoutX="158.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="مبلغ : ">
+                     <font>
+                        <Font name="B Yekan" size="21.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="setStreamMoney" layoutX="14.0" layoutY="19.0" />
+                  <Button layoutX="22.0" layoutY="79.0" mnemonicParsing="false" onAction="#setIncrease" style="-fx-background-color: #0ECC3E;" text="افزودن به شماره کارت ثبت شده" />
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Label alignment="TOP_LEFT" layoutX="1024.0" layoutY="260.0" prefHeight="25.0" prefWidth="119.0" text="نام کاربری" textFill="WHITE">
