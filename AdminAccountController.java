@@ -8,12 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -49,11 +53,8 @@ public class AdminAccountController implements Initializable {
     private TextField userField;
 
     @FXML
-    void checkProductsButton(ActionEvent event) throws IOException {
-        Scene scene = new Scene(Methods.loader("checkingProducts.fxml").load(), 500, 600);
-        Methods.stage.setScene(scene);
-        Methods.stage.setFullScreen(true);
-        Methods.stage.show();
+    void checkProductsButton(ActionEvent event) {
+
     }
 
     @FXML
@@ -73,19 +74,13 @@ public class AdminAccountController implements Initializable {
     }
 
     @FXML
-    void seeOthersInformationButton(ActionEvent event) throws IOException {
-        Scene scene = new Scene(Methods.loader("InformationOfMembers.fxml").load(), 500, 600);
-        Methods.stage.setScene(scene);
-        Methods.stage.setFullScreen(true);
-        Methods.stage.show();
+    void seeOthersInformationButton(ActionEvent event) {
+
     }
 
     @FXML
-    void sellInformationButton(ActionEvent event) throws IOException {
-        Scene scene = new Scene(Methods.loader("AdminAccount.fxml").load(), 500, 600);
-        Methods.stage.setScene(scene);
-        Methods.stage.setFullScreen(true);
-        Methods.stage.show();
+    void sellInformationButton(ActionEvent event) {
+
     }
 
     @Override
@@ -101,8 +96,8 @@ public class AdminAccountController implements Initializable {
         for (int i=0;i<Information.getMessages().size();i++){
             boolean permission=true;
             for (com.example.OnlineShop.message message : userMessage) {
-                if (message.getUserSender().equals(Information.getMessages().get(i).getUserSender()) &&
-                        message.getRoleSender() == Information.getMessages().get(i).getRoleSender()) {
+                if (Information.getMessages().get(i).getUserSender().equals(message.getUserSender()) &&
+                        Information.getMessages().get(i).getRoleSender()==message.getRoleSender()) {
 
                     permission = false;
                     break;
@@ -113,10 +108,60 @@ public class AdminAccountController implements Initializable {
 
 
         for (int i=0;i<userMessage.size();i++){
-            if (userMessage.get(i).getRoleSender()==3 || userMessage.get(i).getRoleSender()==4)userMessage.remove(i);
+            if (userMessage.get(i).getRoleSender()==3 || userMessage.get(i).getRoleSender()==4) {
+                userMessage.remove(userMessage.get(i));
+                i--;
+            }
+        }
+
+       ArrayList<message>userMessage2=new ArrayList<>();
+
+        for (int i=userMessage.size()-1;i>=0;i--){
+            userMessage2.add(userMessage.get(i));
+        }
+
+        ArrayList<message>userMessage3=new ArrayList<>();
+
+        for (message value : userMessage2) {
+            for (com.example.OnlineShop.message message : Information.getMessages()) {
+                if (value.getUserSender().equals(message.getUserSender()) &&
+                        value.getRoleSender() == message.getRoleSender() && message.getRead() == 1) {
+                    userMessage3.add(value);
+                    break;
+                }
+            }
+        }
+
+        ArrayList<message>userMessage4=new ArrayList<>();
+
+        for (message value : userMessage2) {
+            boolean b = true;
+            for (com.example.OnlineShop.message message : userMessage3) {
+                if (value.equals(message)) {
+                    b = false;
+                    break;
+                }
+            }
+            if (b) userMessage4.add(value);
         }
 
 
+        ArrayList<message>userMessage5=new ArrayList<>();
+
+
+        userMessage5.addAll(userMessage3);
+
+        userMessage5.addAll(userMessage4);
+
+        userMessage.removeAll(userMessage);
+
+        userMessage.addAll(userMessage5);
+
+
+        userMessage2.clear();
+        userMessage3.clear();
+        userMessage4.clear();
+        userMessage5.clear();
 
 
         for (int i=0;i<userMessage.size();i++){
@@ -126,11 +171,36 @@ public class AdminAccountController implements Initializable {
                 role="خریدار";
             }else role="فروشنده";
 
-            anchorPane.setPrefHeight((i+1)*60);
-            grid.setPrefHeight((i+1)*60);
+            anchorPane.setPrefHeight((i+1)*70);
+            grid.setPrefHeight((i+1)*70);
             Button chatLabel=new Button(String.valueOf(userMessage.get(i).getUserSender()+"( "+role+" )"));
             chatLabel.setFont(Font.font(18));
-            chatLabel.setPrefSize(300,60);
+            chatLabel.setPrefSize(250,70);
+
+            Button iconLabel=new Button();
+            try {
+                iconLabel.setGraphic(new ImageView(new Image(new FileInputStream("src/main/resources/com/example/image/eye2.png"))));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            iconLabel.resize(50,60);
+            boolean p=false;
+            for (com.example.OnlineShop.message message : Information.getMessages()) {
+                if (userMessage.get(i).getUserSender().equals(message.getUserSender()) &&
+                        userMessage.get(i).getRoleSender() == message.getRoleSender() && message.getRead() == 1) {
+                    p = true;
+                    break;
+                }
+            }
+
+            if (p){
+                try {
+                    iconLabel.setGraphic(new ImageView(new Image(new FileInputStream("src/main/resources/com/example/image/eye.png"))));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
 
             int index=i;
             chatLabel.setOnAction(e ->{
@@ -143,7 +213,7 @@ public class AdminAccountController implements Initializable {
                 }
             });
 
-            HBox hBox=new HBox(chatLabel);
+            HBox hBox=new HBox(chatLabel,iconLabel);
 
             hBox.setPadding(new Insets(5));
             grid.add(hBox,0,i);

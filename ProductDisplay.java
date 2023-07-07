@@ -1,4 +1,4 @@
-package com.example.demo35;
+package com.example.OnlineShop;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

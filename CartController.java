@@ -41,7 +41,7 @@ public class CartController implements Initializable {
 
     @FXML
     void disscountPage(ActionEvent event) throws IOException {
-        Information.back=2;
+        Information.backDiscount=2;
         Scene scene = new Scene(Methods.loader("discountCode.fxml").load(), 500, 600);
         Methods.stage.setScene(scene);
         Methods.stage.setFullScreen(true);
@@ -57,7 +57,7 @@ public class CartController implements Initializable {
             Methods.stage.show();
         }
         else {
-            Information.back=3;
+            Information.backLogin=2;
             Scene scene = new Scene(Methods.loader("Login.fxml").load(), 500, 600);
             Methods.stage.setScene(scene);
             Methods.stage.setFullScreen(true);

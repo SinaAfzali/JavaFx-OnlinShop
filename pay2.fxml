@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.pay2Controller">
    <children>
       <Pane layoutX="390.0" layoutY="123.0" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #662d91; -fx-background-radius: 100px;" styleClass="#0f0c38">
          <children>
@@ -16,17 +18,17 @@
                   <Font name="W_yekan Bold" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="loginButton" layoutX="253.0" layoutY="468.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="42.0" prefWidth="234.0" style="-fx-background-color: #eb5406; -fx-background-radius: 5px100px;" text="تکمیل فرایند پرداخت" textFill="#fffcfc">
+            <Button layoutX="253.0" layoutY="468.0" mnemonicParsing="false" onAction="#completePay" prefHeight="42.0" prefWidth="234.0" style="-fx-background-color: #eb5406; -fx-background-radius: 5px100px;" text="تکمیل فرایند پرداخت" textFill="#fffcfc">
                <font>
                   <Font name="B Titr Bold" size="22.0" />
                </font>
             </Button>
-            <TextField fx:id="codeField" alignment="CENTER" layoutX="335.0" layoutY="363.0" prefHeight="40.0" prefWidth="182.0" promptText="کد تخفیف" style="-fx-background-radius: 15px;">
+            <TextField fx:id="codeField" alignment="CENTER" layoutX="378.0" layoutY="368.0" prefHeight="40.0" prefWidth="182.0" promptText="کد تخفیف" style="-fx-background-radius: 15px;">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="codeField1" alignment="CENTER" layoutX="248.0" layoutY="204.0" prefHeight="40.0" prefWidth="304.0" promptText="محله. خیابان. کوچه. پلاک" style="-fx-background-radius: 15px;">
+            <TextField fx:id="addressField" alignment="CENTER" layoutX="70.0" layoutY="204.0" prefHeight="40.0" prefWidth="482.0" promptText="محله. خیابان. کوچه. پلاک" style="-fx-background-radius: 15px;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -41,36 +43,46 @@
                   <Font name="W_yekan" size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="codeField2" alignment="CENTER" layoutX="311.0" layoutY="283.0" prefHeight="40.0" prefWidth="212.0" promptText="شماره تلفن" style="-fx-background-radius: 15px;">
+            <TextField fx:id="phoneNumberField" alignment="CENTER" layoutX="311.0" layoutY="283.0" prefHeight="40.0" prefWidth="212.0" promptText="شماره تلفن" style="-fx-background-radius: 15px;">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Label layoutX="556.0" layoutY="359.0" prefHeight="27.0" prefWidth="79.0" text="کد تخفیف" textFill="WHITE">
+            <Label layoutX="571.0" layoutY="359.0" prefHeight="27.0" prefWidth="79.0" text="کد تخفیف" textFill="WHITE">
                <font>
                   <Font name="W_yekan" size="22.0" />
                </font>
             </Label>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="213.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ثبت خرید برای کاربر با نام کاربری   sasan" textAlignment="CENTER">
-               <font>
-                  <Font name="B Yekan" size="21.0" />
-               </font>
-            </Text>
-            <TextField alignment="CENTER" layoutX="14.0" layoutY="379.0" prefHeight="34.0" prefWidth="283.0" style="-fx-background-color: #eb5406;" text="میزان تخفیف : 0ریال">
+            <TextField fx:id="amountDiscount" alignment="CENTER" layoutX="14.0" layoutY="373.0" prefHeight="34.0" prefWidth="283.0" style="-fx-background-color: #eb5406;" text="میزان تخفیف : 0 تومان">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Text fill="WHITE" layoutX="42.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت پیش از اعمال تخفیف : 0ریال">
+            <Text fx:id="lastDiscount" fill="WHITE" layoutX="12.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت پیش از اعمال تخفیف : " textAlignment="RIGHT" wrappingWidth="282.9999999999999">
                <font>
                   <Font name="B Yagut" size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="45.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت پس از اعمال تخفیف : 0ریال">
+            <Text fx:id="nextDiscount" fill="WHITE" layoutX="13.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت پس از اعمال تخفیف : " textAlignment="RIGHT" wrappingWidth="282.9999999999998">
                <font>
                   <Font name="B Yagut" size="18.0" />
                </font>
             </Text>
+            <Label fx:id="titleText" alignment="CENTER" layoutX="155.0" layoutY="109.0" prefHeight="48.0" prefWidth="474.0" text="ثبت خرید برای کاربر با نام کاربری   sasan" textAlignment="CENTER">
+               <font>
+                  <Font name="B Yekan" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="78.0" fitWidth="86.0" layoutX="614.0" layoutY="25.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/vector.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="318.0" layoutY="367.0" mnemonicParsing="false" onAction="#signingDiscount" prefHeight="34.0" prefWidth="58.0" style="-fx-background-radius: 15px; -fx-background-color: #00ff5d;" text="ثبت">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
