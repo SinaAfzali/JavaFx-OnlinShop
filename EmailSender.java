@@ -1,19 +1,18 @@
+package com.example.OnlineShop;
+
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
 public class EmailSender {
-    public static void main(String[] args) {
+    public static int send(String email,String Subject,String Content) {
         // Sender's email configuration
-        String senderEmail = "";
-        String senderPassword = "";
+        String senderEmail = "NonShopMe@gmail.com";
+        String senderPassword = "qkcfyborxcsoduwi";
+
 
         // Recipient's email address
-        String recipientEmail = "";
-
-        // Email subject and content
-        String emailSubject = "Hello from JavaMail";
-        String emailContent = "This is a test email sent from Java.";
+        String recipientEmail = email ;
 
         // Sender's SMTP server configuration
         String smtpHost = "smtp.gmail.com";
@@ -42,15 +41,15 @@ public class EmailSender {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
 
             // Set email subject and content
-            message.setSubject(emailSubject);
-            message.setText(emailContent);
+            message.setSubject(Subject);
+            message.setText(Content);
 
             // Send the message
             Transport.send(message);
 
-            System.out.println("Email sent successfully!");
+            return 0;
         } catch (MessagingException e) {
-            System.out.println("Failed to send email. Error: " + e.getMessage());
+            return 1;
         }
     }
 }
