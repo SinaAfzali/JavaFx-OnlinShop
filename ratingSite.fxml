@@ -6,43 +6,53 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"  style=" -fx-background-color: #5675bf; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.ratingSiteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1566.0" style=" -fx-background-color: #5675bf; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.ratingSiteController">
    <children>
-      <Label layoutX="189.0" layoutY="31.0" text="رضایت شما از فروشگاه؟">
+      <Label layoutX="641.0" layoutY="31.0" text="رضایت شما از فروشگاه؟">
+         <font>
+            <Font name="B Yekan" size="40.0" />
+         </font>
+      </Label>
+      <Button layoutX="736.0" layoutY="386.0" mnemonicParsing="false" onAction="#confirmPoint" style="-fx-background-radius: 20px; -fx-background-color: #09f220;" text="ارسال بازخورد">
          <font>
             <Font name="B Yekan" size="25.0" />
          </font>
-      </Label>
-      <Button layoutX="243.0" layoutY="345.0" mnemonicParsing="false" onAction="#confirmPoint" text="ارسال بازخورد">
-         <font>
-            <Font name="B Yekan" size="17.0" />
-         </font>
       </Button>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="14.0" layoutY="157.0" onMouseClicked="#p1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="435.0" layoutY="157.0" onMouseClicked="#p1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/1111111.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="131.0" layoutY="157.0" onMouseClicked="#p2" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="601.0" layoutY="157.0" onMouseClicked="#p2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/2222222.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="252.0" layoutY="157.0" onMouseClicked="#p3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="772.0" layoutY="157.0" onMouseClicked="#p3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/3333333.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="374.0" layoutY="157.0" onMouseClicked="#p4" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="940.0" layoutY="157.0" onMouseClicked="#p4" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/4444444.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="492.0" layoutY="157.0" onMouseClicked="#p5" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1111.0" layoutY="157.0" onMouseClicked="#p5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/5555555.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="430.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="از اینکه نظر خود را با ما به اشتراک می گذارید صمیمانه متشکریم">
+         <font>
+            <Font name="B Yekan" size="33.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="61.0" fitWidth="78.0" layoutX="1410.0" layoutY="53.0" onMouseClicked="#setBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/vector.png" />
          </image>
       </ImageView>
    </children>
