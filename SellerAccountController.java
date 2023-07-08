@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -22,6 +23,10 @@ public final class SellerAccountController implements Initializable {
     public Button confirmButton;
     @FXML
     public Button cancelButton;
+    public TextField setStreamMoney;
+    public Pane paneHide;
+    public TextField setMoneyConfirm;
+    public TextField setCardNumber;
     private boolean editMode = false;
 
     private String initialEmail;
@@ -112,10 +117,6 @@ public final class SellerAccountController implements Initializable {
     @FXML
     void changeInformationButton(ActionEvent event) {
         if (!editMode) {
-//            File selectedFile = fileChooser.showOpenDialog(null);
-//            if(selectedFile != null){
-//
-//            }
 
 
             cancelButton.setVisible(true);
@@ -197,9 +198,11 @@ public final class SellerAccountController implements Initializable {
         Methods.stage.show();
     }
 
+    boolean v=true;
     @FXML
     void takeMoney(ActionEvent event) {
-
+        paneHide.setVisible(v);
+        v=!v;
     }
 
     @Override
@@ -218,5 +221,43 @@ public final class SellerAccountController implements Initializable {
             }
         }
     }
+    @FXML
+    public void myProductButton(ActionEvent actionEvent) throws IOException {
+        Scene scene = new Scene(Methods.loader("myProduct.fxml").load(), 500, 600);
+        Methods.stage.setScene(scene);
+        Methods.stage.setFullScreen(true);
+        Methods.stage.show();
+    }
 
+    public void giveMoney(ActionEvent actionEvent) {
+        int seller=1;
+        for (int i=0;i<Information.getPersons().size();i++){
+            if (Information.getPersons().get(i) instanceof Seller &&
+            Information.getPersons().get(i).getUserName().equals(Information.getUserName())){
+                seller=i;
+                break;
+            }
+        }
+
+        boolean permission=true;
+
+        if (Double.parseDouble(setMoneyConfirm.getText())>Information.getPersons().get(seller).getMoney() || !Methods.checkFieldText(setMoneyConfirm.getText())){
+            permission=false;
+            Methods.notification("نمیتوانید مبلغی بیشتر از موجودی خود درخواست کنید",5);
+        }
+        if (setCardNumber.getText().length()!=16 || !Methods.checkFieldText(setCardNumber.getText())){
+            permission=false;
+            Methods.notification("شماره کارت نامعتبر است",5);
+        }
+
+        if (permission){
+
+            Methods.notification("تراکنش با موفقیت انجام شد",5);
+            Information.getPersons().get(seller).setMoney((Information.getPersons().get(seller)).getMoney()-Double.parseDouble(setMoneyConfirm.getText()));
+
+            Database.updatePerson(Information.getPersons().get(seller));
+
+        }
+
+    }
 }

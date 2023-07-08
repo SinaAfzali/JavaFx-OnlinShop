@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.SellerAccountController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1530.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.OnlineShop.SellerAccountController">
    <children>
       <Pane layoutX="390.0" layoutY="122.5" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #662d91; -fx-background-radius: 50px;">
          <children>
@@ -48,26 +48,15 @@
             <Button fx:id="cancelButton" layoutX="272.0" layoutY="294.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="25.0" prefWidth="47.0" style="-fx-background-color: #1E698F;" text="لغو" textFill="WHITE" visible="false" />
             <ImageView fitHeight="88.0" fitWidth="101.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
-
+                  <Image url="@../image/wallet.png" />
                </image>
             </ImageView>
-            <Button layoutX="164.0" layoutY="216.0" mnemonicParsing="false" onAction="#sellInformationButton" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #eb5406; -fx-background-radius: 15px100px;" text="کالا های من" textFill="WHITE">
+            <Button layoutX="164.0" layoutY="216.0" mnemonicParsing="false" onAction="#myProductButton" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #eb5406; -fx-background-radius: 15px100px;" text="کالا های من" textFill="WHITE">
                <font>
                   <Font name="B Titr Bold" size="18.0" />
                </font>
             </Button>
-            <Pane layoutX="22.0" layoutY="94.0" prefHeight="115.0" prefWidth="221.0" style="-fx-background-color: #81d4f4; -fx-background-radius: 10px;" visible="false">
-               <children>
-                  <Text layoutX="158.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="مبلغ : ">
-                     <font>
-                        <Font name="B Yekan" size="21.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="setStreamMoney" layoutX="14.0" layoutY="19.0" />
-                  <Button layoutX="22.0" layoutY="79.0" mnemonicParsing="false" onAction="#setIncrease" style="-fx-background-color: #0ECC3E;" text="افزودن به شماره کارت ثبت شده" />
-               </children>
-            </Pane>
-            <Pane layoutX="6.0" layoutY="94.0" prefHeight="115.0" prefWidth="302.0" style="-fx-background-color: #84d0f9; -fx-background-radius: 20px;" visible="false">
+            <Pane fx:id="paneHide" layoutX="6.0" layoutY="94.0" prefHeight="115.0" prefWidth="302.0" style="-fx-background-color: #84d0f9; -fx-background-radius: 20px;" visible="false">
                <children>
                   <Text layoutX="238.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="مبلغ : ">
                      <font>
@@ -81,7 +70,7 @@
                   </Text>
                   <TextField fx:id="setMoneyConfirm" alignment="CENTER" layoutX="89.0" layoutY="6.0" promptText="تومان" />
                   <TextField fx:id="setCardNumber" alignment="CENTER" layoutX="14.0" layoutY="49.0" prefHeight="25.0" prefWidth="171.0" promptText="____   ____   ____   ____" />
-                  <Button fx:id="giveMoney" layoutX="119.0" layoutY="85.0" mnemonicParsing="false" style="-fx-background-color: #0ECC3E; -fx-background-radius: 20px;" text="برداشت">
+                  <Button onAction="#giveMoney" layoutX="119.0" layoutY="85.0" mnemonicParsing="false" style="-fx-background-color: #0ECC3E; -fx-background-radius: 20px;" text="برداشت">
                      <font>
                         <Font name="B Yekan" size="15.0" />
                      </font>
